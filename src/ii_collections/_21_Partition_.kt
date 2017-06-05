@@ -10,7 +10,11 @@ fun example8() {
     negative == listOf(-4, -11)
 }
 
+fun Customer.getNumberOfOrdersByStatus(status: Boolean) : Int {
+    return orders.filter { it.isDelivered == status }.size
+}
+
 fun Shop.getCustomersWithMoreUndeliveredOrdersThanDelivered(): Set<Customer> {
     // Return customers who have more undelivered orders than delivered
-    todoCollectionTask()
+    return customers.filter { it.getNumberOfOrdersByStatus(false) > it.getNumberOfOrdersByStatus(true) }.toSet()
 }
